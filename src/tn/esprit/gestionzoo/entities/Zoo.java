@@ -1,19 +1,30 @@
 package tn.esprit.gestionzoo.entities;
 
 public class Zoo {
+    private String name;
+    private String city;
+    private final int nbrCages = 3;
+    private Animal[] animals;
+    private int animalCount = 0;
+
+
+    public Zoo(String name, String city) {
+        this.name = name;
+        this.city = city;
+        this.animals = new Animal[nbrCages];
+        this.animalCount = 0;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
-        if (name.isEmpty() == false ) {
+        if (!name.isEmpty()) {
             this.name = name;
-
+        } else {
+            System.out.println("nom vide!");
         }
-        else {
-                    System.out.println("nom vide!");
-            ;}
-
     }
 
     public String getCity() {
@@ -44,51 +55,31 @@ public class Zoo {
         this.animals = animals;
     }
 
-    private String name;
-    private String city;
-    private final int nbrCages=25;
-    private Animal[] animals;
-    private int animalCount = 0;
-
-    public Zoo(String city, String name, int animalCount) {
-        this.city = city;
-        this.name = name;
-        this.animalCount = animalCount;
-    }
-
-
-    public Zoo(String name, String city) {
-        this.name = name;
-        this.city = city;
-        this.animals = new Animal[nbrCages];
-        this.animalCount = 0;
-
-    }
     public void displayZoo() {
         System.out.println("Nom du zoo : " + name);
         System.out.println("Ville : " + city);
         System.out.println("Nombre de cages : " + nbrCages);
     }
-    /*
+
     public boolean addAnimal(Animal animal) {
         if (isZooFull()) {
-            System.out.println(" Impossible d’ajouter " + animal.name + " : le zoo est plein !");
+            System.out.println(" Impossible d’ajouter " + animal.getName() + " : le zoo est plein !");
             return false;
         }
 
         for (int i = 0; i < animalCount; i++) {
-            if (animals[i].name.equalsIgnoreCase(animal.name)) {
-                System.out.println(" L’animal " + animal.name + " existe déjà dans le zoo !");
+            if (animals[i].getName().equalsIgnoreCase(animal.getName())) {
+                System.out.println(" L’animal " + animal.getName() + " existe déjà dans le zoo !");
                 return false;
             }
         }
+
         animals[animalCount] = animal;
         animalCount++;
-        System.out.println(" L’animal " + animal.name + "a été ajouté avec succès !");
+        System.out.println(" L’animal " + animal.getName() + " a été ajouté avec succès !");
         return true;
     }
 
-     */
     public void displayAnimals() {
         if (animalCount == 0) {
             System.out.println("Aucun animal dans le zoo.");
@@ -99,35 +90,36 @@ public class Zoo {
             }
         }
     }
-  /*  public int searchAnimal(Animal animal) {
+
+    public int searchAnimal(Animal animal) {
         for (int i = 0; i < animalCount; i++) {
-            if (animals[i].name.equalsIgnoreCase(animal.name)) {
+            if (animals[i].getName().equalsIgnoreCase(animal.getName())) {
                 return i;
             }
         }
         return -1;
-    }*/
-/*
+    }
+
+
     public boolean removeAnimal(String name) {
         for (int i = 0; i < animalCount; i++) {
-            if (animals[i].name.equalsIgnoreCase(name)) {
+            if (animals[i].getName().equalsIgnoreCase(name)) {
                 for (int j = i; j < animalCount - 1; j++) {
                     animals[j] = animals[j + 1];
                 }
                 animals[animalCount - 1] = null;
                 animalCount--;
-                System.out.println("L’animal " + name + " a été supprimé du zoo !");
                 return true;
             }
         }
-        System.out.println(" L’animal " + name + " n’existe pas dans le zoo !");
         return false;
     }
-*/
-    public boolean isZooFull()
-    {
+
+
+    public boolean isZooFull() {
         return animalCount >= nbrCages;
     }
+
     public static Zoo comparerZoo(Zoo z1, Zoo z2) {
         if (z1.animalCount >= z2.animalCount) {
             return z1;
