@@ -7,7 +7,9 @@ public class Zoo {
     private Animal[] animals;
     private int animalCount = 0;
 
-
+    //  Prosit 6
+    private Aquatic[] aquaticAnimals = new Aquatic[10];
+    private int aquaticCount = 0;
     public Zoo(String name, String city) {
         this.name = name;
         this.city = city;
@@ -127,6 +129,69 @@ public class Zoo {
             return z2;
         }
     }
+    // Prosit 6
+    public void addAquaticAnimal(Aquatic aquatic) {
+        if (aquaticCount >= aquaticAnimals.length) {
+            System.out.println("Impossible d’ajouter " + aquatic.getName() + " : le tableau des animaux aquatiques est plein !");
+            return;
+        }
+
+        aquaticAnimals[aquaticCount] = aquatic;
+        aquaticCount++;
+        System.out.println("L’animal aquatique " + aquatic.getName() + " a été ajouté avec succès !");
+    }
+
+    //  Prosit 6
+    public void displayAquaticSwim() {
+        if (aquaticCount == 0) {
+            System.out.println("Aucun animal aquatique dans le zoo.");
+            return;
+        }
+
+        System.out.println(" Les animaux aquatiques nagent ");
+        for (int i = 0; i < aquaticCount; i++) {
+            aquaticAnimals[i].swim();
+        }
+    }
+    public float maxPenguinSwimmingDepth() {
+        float maxDepth = 0.0f;
+
+        if (aquaticAnimals == null) return maxDepth;
+
+        for (Aquatic aquatic : aquaticAnimals) {
+            if (aquatic != null && "Penguin".equals(aquatic.getType())) {
+                float depth = aquatic.getSwimmingDepth();
+                if (depth > maxDepth)
+                    maxDepth = depth;
+            }
+        }
+
+        return maxDepth;
+    }
+    // Instruction 30
+    public void displayNumberOfAquaticsByType() {
+        int dolphinCount = 0;
+        int penguinCount = 0;
+
+        for (Aquatic aquatic : aquaticAnimals) {
+            if (aquatic != null) {
+                switch (aquatic.getType()) {
+                    case "Dolphin":
+                        dolphinCount++;
+                        break;
+                    case "Penguin":
+                        penguinCount++;
+                        break;
+                }
+            }
+        }
+
+        System.out.println("Nombre de dauphins : " + dolphinCount);
+        System.out.println("Nombre de pingouins : " + penguinCount);
+    }
+
+
+
 
     @Override
     public String toString() {

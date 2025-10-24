@@ -46,7 +46,6 @@ public class ZooManagement {
 
         Zoo[] zoos = {myZoo1, myZoo2};
 
-// Recherche d'un animal
         System.out.print("Entrez le nom de l’animal à rechercher : ");
         String nameToSearch = scanner.nextLine();
         boolean found = false;
@@ -65,7 +64,6 @@ public class ZooManagement {
             System.out.println("L’animal " + nameToSearch + " n’existe dans aucun zoo.");
         }
 
-// Suppression d'un animal
         System.out.print("Entrez le nom de l’animal à supprimer : ");
         String nameToRemove = scanner.nextLine();
         boolean removed = false;
@@ -103,14 +101,14 @@ public class ZooManagement {
 
         /* PROSIT 5*/
 
-
+/*
         Aquatic aquatic = new Aquatic();
         aquatic.setName("Nemo");
         aquatic.setAge(3);
         aquatic.setFamily("Aquatic");
         aquatic.setMammal(false);
         aquatic.setHabitat("Océan");
-
+*/
         Terrestrial terrestrial = new Terrestrial();
         terrestrial.setName("Terro");
         terrestrial.setAge(4);
@@ -136,12 +134,21 @@ public class ZooManagement {
         penguin.setSwimmingDepth(30.0f);
         penguin.swim();
 
-        System.out.println(aquatic);
+        /* System.out.println(aquatic);*/
         System.out.println(terrestrial);
         System.out.println(dolphin);
         System.out.println(penguin);
-        aquatic.swim();
+        /* aquatic.swim(); */
 
+        //  Instruction 26 :
+        /* myZoo.addAquaticAnimal(aquatic);*/
+        myZoo.addAquaticAnimal(dolphin);
+        myZoo.addAquaticAnimal(penguin);
+        // Instruction 27 :
+        myZoo.displayAquaticSwim();
+        System.out.println("Profondeur maximale des pingouins : " + myZoo.maxPenguinSwimmingDepth());
+        // Instruction 30
+        myZoo.displayNumberOfAquaticsByType();
 
         scanner.close();
     }

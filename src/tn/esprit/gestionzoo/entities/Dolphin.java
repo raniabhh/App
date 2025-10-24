@@ -15,9 +15,18 @@ public class Dolphin extends Aquatic {
 
     @Override
     public void swim() {
-        System.out.println("This dolphin is swimming.");
+        System.out.println("Ce dauphin nage dans l'océan.");
     }
 
+    @Override
+    public float getSwimmingDepth() {
+        return 0;
+    }
+
+    @Override
+    public String getType() {
+        return "Dolphin";
+    }
     @Override
     public String toString() {
         return super.toString() + ", swimmingSpeed=" + swimmingSpeed;
