@@ -63,23 +63,15 @@ public class Zoo {
         System.out.println("Nombre de cages : " + nbrCages);
     }
 
-    public boolean addAnimal(Animal animal) {
-        if (isZooFull()) {
-            System.out.println(" Impossible d’ajouter " + animal.getName() + " : le zoo est plein !");
-            return false;
-        }
-
-        for (int i = 0; i < animalCount; i++) {
-            if (animals[i].getName().equalsIgnoreCase(animal.getName())) {
-                System.out.println(" L’animal " + animal.getName() + " existe déjà dans le zoo !");
-                return false;
-            }
+    public void addAnimal(Animal animal) throws ZooFullException {
+        if (animalCount >= nbrCages) {
+            throw new ZooFullException("Impossible d’ajouter " + animal.getName() + " : le zoo est plein !");
         }
 
         animals[animalCount] = animal;
         animalCount++;
-        System.out.println(" L’animal " + animal.getName() + " a été ajouté avec succès !");
-        return true;
+        System.out.println("L’animal " + animal.getName() + " a été ajouté avec succès !");
+        System.out.println("Nombre actuel d’animaux : " + animalCount);
     }
 
     public void displayAnimals() {

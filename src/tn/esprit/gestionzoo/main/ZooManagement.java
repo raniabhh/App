@@ -1,4 +1,6 @@
 package tn.esprit.gestionzoo.main;
+import tn.esprit.gestionzoo.entities.ZooFullException; // ✅ AJOUT
+import tn.esprit.gestionzoo.entities.InvalidAgeException;
 
 import tn.esprit.gestionzoo.entities.Animal;
 import tn.esprit.gestionzoo.entities.Zoo;
@@ -10,7 +12,7 @@ import tn.esprit.gestionzoo.entities.Penguin;
 import java.util.Scanner;
 
 public class ZooManagement {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidAgeException {
 
 
         Scanner scanner = new Scanner(System.in);
@@ -30,20 +32,30 @@ public class ZooManagement {
             System.out.print("Le nom du zoo ne doit pas être vide, réessayez : ");
             zoo2Name = scanner.nextLine();
         }
-
+        try {
         Animal lion = new Animal("Lion", "Lilo", 3, true);
         Animal elephant = new Animal("Éléphant", "Ella", 5, true);
         Animal giraffe = new Animal("Girafe", "Gigi", 4, true);
         Animal lion2 = new Animal("Lion", "Elio", 3, true);
 
-        myZoo1.addAnimal(lion);
-        myZoo1.addAnimal(elephant);
-        myZoo1.addAnimal(lion2);
-        myZoo1.addAnimal(giraffe);
+            try {
+                myZoo1.addAnimal(lion);
+                myZoo1.addAnimal(elephant);
+                myZoo1.addAnimal(lion2);
+                myZoo1.addAnimal(giraffe);
+            } catch (ZooFullException e) {
+                System.out.println(" Exception capturée : " + e.getMessage());
+            }
+        } catch (InvalidAgeException e) {
+            System.out.println(" Erreur : " + e.getMessage());
+        }
 
-        myZoo2.addAnimal(new Animal("Panda", "Pandi", 2, true));
-        myZoo2.addAnimal(new Animal("Kangourou", "Kanga", 4, true));
-
+        try {
+            myZoo2.addAnimal(new Animal("Panda", "Pandi", 2, true));
+            myZoo2.addAnimal(new Animal("Kangourou", "Kanga", 4, true));
+        } catch (ZooFullException | InvalidAgeException e) {
+            System.out.println("Exception capturée : " + e.getMessage());
+        }
         Zoo[] zoos = {myZoo1, myZoo2};
 
         System.out.print("Entrez le nom de l’animal à rechercher : ");
@@ -59,6 +71,7 @@ public class ZooManagement {
                 break;
             }
         }
+
 
         if (!found) {
             System.out.println("L’animal " + nameToSearch + " n’existe dans aucun zoo.");
