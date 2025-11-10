@@ -8,6 +8,7 @@ import tn.esprit.gestionzoo.entities.Aquatic;
 import tn.esprit.gestionzoo.entities.Terrestrial;
 import tn.esprit.gestionzoo.entities.Dolphin;
 import tn.esprit.gestionzoo.entities.Penguin;
+import tn.esprit.gestionzoo.entities.Food;
 
 import java.util.Scanner;
 
@@ -71,6 +72,7 @@ public class ZooManagement {
                 break;
             }
         }
+
 
 
         if (!found) {
@@ -162,6 +164,18 @@ public class ZooManagement {
         System.out.println("Profondeur maximale des pingouins : " + myZoo.maxPenguinSwimmingDepth());
         // Instruction 30
         myZoo.displayNumberOfAquaticsByType();
+
+        //Prosit 8
+
+        Aquatic dauphin = new Dolphin("Dauphin", "Flippy", 4, true, "Mer", 30.5f);
+        Terrestrial singe = new Terrestrial("Singe", "George", 3, true, 2);
+        Penguin pingouin = new Penguin("Penguin", "Pingo", 2, false, "Antarctique", 20.0f);
+
+        dauphin.eatMeat(Food.MEAT);
+        pingouin.eatMeat(Food.BOTH);
+        singe.eatPlant(Food.PLANT);
+        singe.eatMeat(Food.MEAT);
+        singe.eatPlantAndMeet(Food.BOTH);
 
         scanner.close();
     }

@@ -1,36 +1,49 @@
 package tn.esprit.gestionzoo.entities;
+
 import java.util.Objects;
 
-public abstract class Aquatic extends Animal {
+public abstract class Aquatic extends Animal implements Carnivore<Food> {
     protected String habitat;
 
     public Aquatic() {}
 
-    public Aquatic(String family, String name, int age, boolean isMammal, String habitat) {
+    public Aquatic(String family, String name, int age, boolean isMammal, String habitat) throws InvalidAgeException {
         super(family, name, age, isMammal);
         this.habitat = habitat;
     }
 
-    public String getHabitat() { return habitat; }
-    public void setHabitat(String habitat) { this.habitat = habitat; }
+    public String getHabitat() {
+        return habitat;
+    }
 
+    public void setHabitat(String habitat) {
+        this.habitat = habitat;
+    }
 
-    //  Prosit 6
+    // 🔹 Méthodes abstraites à implémenter par Dolphin / Penguin
     public abstract void swim();
     public abstract float getSwimmingDepth();
     public abstract String getType();
 
+    // 🔹 Implémentation de l’interface Carnivore<Food>
+    @Override
+    public void eatMeat(Food meat) {
+        if (meat == Food.MEAT || meat == Food.BOTH) {
+            System.out.println(getName() + " mange de la viande dans son habitat " + habitat + ".");
+        } else {
+            System.out.println(getName() + " ne mange pas de plantes !");
+        }
+    }
+
+    // 🔹 Méthodes de comparaison et d'affichage
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
-
+        if (obj == null || getClass() != obj.getClass()) return false;
         Aquatic other = (Aquatic) obj;
-
-        return Objects.equals(this.getName(), other.getName())
-                && this.getAge() == other.getAge()
-                && Objects.equals(this.habitat, other.habitat);
+        return Objects.equals(getName(), other.getName())
+                && getAge() == other.getAge()
+                && Objects.equals(habitat, other.habitat);
     }
 
     @Override
