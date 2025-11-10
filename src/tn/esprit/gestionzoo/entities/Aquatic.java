@@ -20,12 +20,10 @@ public abstract class Aquatic extends Animal implements Carnivore<Food> {
         this.habitat = habitat;
     }
 
-    // 🔹 Méthodes abstraites à implémenter par Dolphin / Penguin
     public abstract void swim();
     public abstract float getSwimmingDepth();
     public abstract String getType();
 
-    // 🔹 Implémentation de l’interface Carnivore<Food>
     @Override
     public void eatMeat(Food meat) {
         if (meat == Food.MEAT || meat == Food.BOTH) {
@@ -35,7 +33,6 @@ public abstract class Aquatic extends Animal implements Carnivore<Food> {
         }
     }
 
-    // 🔹 Méthodes de comparaison et d'affichage
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
