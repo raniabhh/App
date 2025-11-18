@@ -33,5 +33,27 @@ public class Main {
         System.out.println(" ** Tri par Département et Grade :**");
         societe.trierEmployeParNomDépartementEtGrade();
         societe.displayEmploye();
-    }
-}
+
+
+
+        //PROSIT 10
+        DepartementHashSet dhs = new DepartementHashSet();
+
+        Departement d1 = new Departement(1, "IT", 50);
+        Departement d2 = new Departement(2, "Finance", 20);
+        Departement d3 = new Departement(3, "RH", 30);
+
+        dhs.ajouterDepartement(d1);
+        dhs.ajouterDepartement(d2);
+        dhs.ajouterDepartement(d3);
+
+        System.out.println("**Liste des départements :**");
+        dhs.displayDepartement();
+
+        System.out.println("**Recherche du département 'IT' :** " + dhs.rechercherDepartement("IT"));
+
+        System.out.println("**Tri par ID :** ");
+        for (Departement d : dhs.trierDepartementById()) {
+            System.out.println(d);
+        }
+    }}
