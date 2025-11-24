@@ -12,7 +12,7 @@ public class AffectationHashMap  {
     }
     public void afficherEmployesEtDepartements() {
         for (Employe e : map.keySet()) {
-            System.out.println(e + " → " + map.get(e));
+            System.out.println(e + " : " + map.get(e));
         }
     }
     public void supprimerEmploye(Employe e) {
@@ -38,7 +38,7 @@ public class AffectationHashMap  {
         return map.containsValue(d);
     }
     public TreeMap<Employe, Departement> trierMap() {
-        return new TreeMap<>(map); // TreeMap trie automatiquement par compareTo
+        return new TreeMap<>(map);
     }
 
 }
