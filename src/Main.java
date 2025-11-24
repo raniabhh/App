@@ -56,4 +56,29 @@ public class Main {
         for (Departement d : dhs.trierDepartementById()) {
             System.out.println(d);
         }
-    }}
+        //Prosit 11
+
+        AffectationHashMap af = new AffectationHashMap();
+
+        af.ajouterEmployeDepartement(e1, d1);
+        af.ajouterEmployeDepartement(e2, d2);
+        af.ajouterEmployeDepartement(e3, d3);
+
+        af.ajouterEmployeDepartement(e1, d3);
+
+        System.out.println("** Employés et Départements **");
+        af.afficherEmployesEtDepartements();
+
+        af.supprimerEmploye(e2);
+
+        System.out.println("**Après suppression e2 **");
+        af.afficherEmployesEtDepartements();
+
+        System.out.println("Recherche e1 : " + af.rechercherEmploye(e1));
+        System.out.println("Recherche département RH : " + af.rechercherDepartement(d3));
+
+        System.out.println("** Map triée par ID Employé **");
+        System.out.println(af.trierMap());
+    }
+}
+
